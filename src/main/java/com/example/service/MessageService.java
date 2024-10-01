@@ -48,7 +48,7 @@ public class MessageService {
     // Update message by ID
     public int updateMessage(int messageId, String newMessageText) {
         Optional<Message> existingMessage = messageRepository.findById(messageId);
-        if (newMessageText.isEmpty() || newMessageText==" " || newMessageText.length() > 255) {
+        if (existingMessage.isEmpty() || newMessageText=="" || newMessageText.length() > 255) {
             return 0;
         }
         Message message = existingMessage.get();
