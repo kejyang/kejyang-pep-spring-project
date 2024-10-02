@@ -16,7 +16,7 @@ public class MessageService {
 
     // Create a new message
     public Message createMessage(Message message) throws Exception {
-        if (message.getMessageText().isBlank() || message.getMessageText().length() > 255) {
+        if (message.getMessageText().length()==0 || message.getMessageText().length() > 255) {
             throw new Exception("Invalid message content");
         }
         return messageRepository.save(message);
@@ -48,7 +48,7 @@ public class MessageService {
     // Update message by ID
     public int updateMessage(int messageId, String newMessageText) {
         Optional<Message> existingMessage = messageRepository.findById(messageId);
-        if (existingMessage.isEmpty() || newMessageText=="" || newMessageText.length() > 255) {
+        if (existingMessage.isEmpty() || newMessageText.length()==0 || newMessageText.length() > 255) {
             return 0;
         }
         Message message = existingMessage.get();

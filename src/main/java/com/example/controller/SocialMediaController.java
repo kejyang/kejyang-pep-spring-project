@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 /**
  * TODO: You will need to write your own endpoints and handlers for your controller using Spring. The endpoints you will need can be
@@ -87,8 +87,8 @@ public class SocialMediaController {
 
         // 7. Update a message by ID
         @PatchMapping("/messages/{messageId}")
-        public ResponseEntity updateMessage(@PathVariable int messageId, @RequestBody String messageText) {
-            int rowsUpdated = messageService.updateMessage(messageId, messageText);
+        public ResponseEntity updateMessage(@PathVariable int messageId, @RequestBody Message messageText) {
+            int rowsUpdated = messageService.updateMessage(messageId, messageText.getMessageText());
             if(rowsUpdated == 0){
                 return ResponseEntity.status(400).build();
             }
